@@ -23,6 +23,9 @@ class SnekRPG(Widget):
 	def on_touch_up(self, touch):
 		self.player.update_move_to(self, touch.x, touch.y)
 		
+	def get_bounds(self, obj):
+		return Vector(0, 0), Vector(self.width - obj.width, self.height - obj.height)
+		
 	pass
 	
 class SnekRPGApp(App):
@@ -33,57 +36,66 @@ class SnekRPGApp(App):
 		return game
 		
 class SnekPlayer(Widget):
-#	vel_x = NumericProperty(0)
-#	vel_y = NumericProperty(0)
-	floatpos = ListProperty()
 	speed = NumericProperty(3)
-	moveto = ListProperty()
+	floatpos = ListProperty()
+	destination = ListProperty()
+	
 	lastmove = ListProperty()
 	last = NumericProperty(0)
-#		
+	
 	def init(self, parent):
 		self.update_move_to(parent, parent.width / 2, parent.height / 2)
 		
-	def tick_move(self, parent):		
-		temp_min = Vector(self.width / 2, self.height / 2)
-		temp_max = Vector(parent.right - (self.width / 2), parent.height - (self.height / 2))
-		move = Vector(self.moveto) - self.pos
+	def tick_move(self, parent):
+		temp_min, temp_max = parent.get_bounds(self)
+		
+		destination = Vector(self.destination)
+		floatpos = Vector(self.floatpos)
+		if destination.x < floatpos.x:
+			temp_min.x = destination.x
+		else:
+			temp_max.x = destination.x
+		if destination.y < floatpos.y:
+			temp_min.y = destination.y
+		else:
+			temp_max.y = destination.y
+		
+		move = Vector(self.destination) - self.pos
 		norm = sqrt(move.x * move.x + move.y * move.y)
 		if norm > self.speed:
 			norm /= self.speed
 		if norm <= 1:
 			return
 		move /= norm
-		self.last = sqrt(move.x * move.x + move.y * move.y)
-		self.lastmove = move
 		
-#		move = move + self.pos
-#		if move.x < temp_min.x:
-#			move.x = temp_min.x			
-#		if move.y < temp_min.y:
-#			move.y = temp_min.y
-#		if move.x > temp_max.x:
-#			move.x = temp_max.x	
-#		if move.y > temp_max.y:
-#			move.y = temp_max.y	
+		newpos = move + self.floatpos
+		
+		if newpos.x < temp_min.x:
+			newpos.x = temp_min.x			
+		if newpos.y < temp_min.y:
+			newpos.y = temp_min.y
+		if newpos.x > temp_max.x:
+			newpos.x = temp_max.x	
+		if newpos.y > temp_max.y:
+			newpos.y = temp_max.y	
 			
-		self.floatpos = move + self.floatpos
-		self.pos = self.floatpos
+		self.floatpos = newpos
+		self.x = round(newpos.x)
+		self.y = round(newpos.y)
 		
 	def update_move_to(self, parent, x, y):
-		temp_min = Vector(0, 0)
-		temp_max = Vector(parent.right - self.width, parent.top - self.height)
+		temp_min, temp_max = parent.get_bounds(self)
 		if x < temp_min.x:
 			x = temp_min.x			
 		if y < temp_min.y:
 			y = temp_min.y			
 		if x > temp_max.x:
-			x = temp_max.x			
+			x = temp_max.x
 		if y > temp_max.y:
 			y = temp_max.y
 
 		self.floatpos = self.pos
-		self.moveto = (x, y)
+		self.destination = (x, y)
 #	
 	pass
 		

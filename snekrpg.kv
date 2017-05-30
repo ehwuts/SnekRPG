@@ -8,23 +8,18 @@
     Label:
         font_size: 10  
         center_x: root.width / 4
+        top: root.top - 30
+        text: str(root.player.floatpos)
+    Label:
+        font_size: 10  
+        center_x: root.width / 4
         top: root.top - 40
         text: str(root.player.pos)
     Label:
         font_size: 10  
         center_x: root.width / 4
         top: root.top - 50
-        text: str(root.player.moveto)
-    Label:
-        font_size: 10  
-        center_x: root.width / 4
-        top: root.top - 60
-        text: str(root.player.lastmove)
-    Label:
-        font_size: 10  
-        center_x: root.width / 4
-        top: root.top - 70
-        text: str(root.player.last)
+        text: str(root.player.destination)
 	
 <SnekPlayer>:
 	size: 32, 32
