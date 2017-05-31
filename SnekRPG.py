@@ -2,17 +2,22 @@
 
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ListProperty, ObjectProperty
+from kivy.properties import NumericProperty, ListProperty, ObjectProperty, StringProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
+from kivy.uix.button import Button
 
 from math import sqrt
 
 class SnekRPG(Widget):
 	player = ObjectProperty(None)
+	mainmenu = ObjectProperty(None)
+	
+	scene = StringProperty('menu')
 	
 	def init(self):
 		self.player.init(self)
+		self.mainmenu.center = self.center
 	
 	def update(self, dt):
 		self.player.tick_move(self)
@@ -34,6 +39,9 @@ class SnekRPGApp(App):
 		game.init()
 		Clock.schedule_interval(game.update, 1.0/60.0)
 		return game
+
+class MainMenu(Widget):		
+	pass
 		
 class SnekPlayer(Widget):
 	speed = NumericProperty(3)
@@ -44,6 +52,7 @@ class SnekPlayer(Widget):
 	last = NumericProperty(0)
 	
 	def init(self, parent):
+		self.size = Vector(32, 32)
 		self.update_move_to(parent, parent.width / 2, parent.height / 2)
 		
 	def tick_move(self, parent):
