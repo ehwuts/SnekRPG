@@ -2,41 +2,44 @@
 
 <SnekRPG>: 
 	player: player_id
-	mainmenu: menu_id
+	mainmenu: mainmenu_id
+	MainMenu:
+		id: mainmenu_id
+		center: self.parent.center
 	SnekPlayer:
 		id: player_id
 		center: self.parent.center
-    Label:
-        font_size: 10  
-        center_x: root.width / 4
-        top: root.top - 30
-        text: str(root.player.floatpos)
-    Label:
-        font_size: 10  
-        center_x: root.width / 4
-        top: root.top - 40
-        text: str(root.player.pos)
-    Label:
-        font_size: 10  
-        center_x: root.width / 4
-        top: root.top - 50
-        text: str(root.player.destination)
-	MainMenu:
-		id: menu_id
-		center: self.parent.center
+	Label:
+		font_size: 10
+		center_x: root.width / 4
+		top: root.top - 30
+		text: str(root.player.floatpos)
+	Label:
+		font_size: 10
+		center_x: root.width / 4
+		top: root.top - 40
+		text: str(root.player.pos)
+	Label:
+		font_size: 10
+		center_x: root.width / 4
+		top: root.top - 50
+		text: str(root.player.destination)
 	
 <SnekPlayer>:
+	size: 32, 32
 	canvas:
 		Rectangle:
 			source: 'images/snek.png'
 			pos: self.pos
 			size: self.size
-<MainMenu>
-	size: 200, 600
+			
+<MainMenu>:
 	menu1: menu1_id
 	menu2: menu2_id
 	menu_exit: menu_exit_id
+	center: self.parent.center
 	GridLayout:
+		pos: self.parent.pos
 		rows: 3
 		cols: 1
 		padding: 10
@@ -50,3 +53,4 @@
 		Button:
 			id: menu_exit_id
 			text: 'Exit'
+	

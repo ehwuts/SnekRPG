@@ -39,9 +39,6 @@ class SnekRPGApp(App):
 		game.init()
 		Clock.schedule_interval(game.update, 1.0/60.0)
 		return game
-
-class MainMenu(Widget):		
-	pass
 		
 class SnekPlayer(Widget):
 	speed = NumericProperty(3)
@@ -108,5 +105,11 @@ class SnekPlayer(Widget):
 #	
 	pass
 		
+class MainMenu(Widget):
+	menu1 = ObjectProperty(None)
+	menu2 = ObjectProperty(None)
+	menu_exit = ObjectProperty(None)
+	pass
+	
 if __name__ == "__main__":
 	SnekRPGApp().run()
