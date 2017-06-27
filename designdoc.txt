@@ -1,0 +1,20 @@
+[11:37 PM] Sukie: instead I shall make a garbage rpg in whatever language and theme someone else suggests
+[11:37 PM] Cerd: I like the potion effects they have
+[11:37 PM] Sukie: amt potion effects?
+[11:37 PM] Cerd: minor stuff like speed
+[11:37 PM] Cerd: and jump boost
+[11:37 PM] Blue-ninja: program it in python
+[11:38 PM] KryptonCaptain: was it Blue who was making ZenGarden way back?
+[11:38 PM] Blue-ninja: ye
+[11:38 PM] Cerd: theme is an animal world
+[11:38 PM] Cerd: no humans
+[11:38 PM] Cerd: but actual animals, not anthros
+[11:38 PM] Sukie: >animal world, programmed in python
+[11:38 PM] Blue-ninja: an animal world, of just snakes
+[11:39 PM] Blue-ninja: just to complete the python theme
+[11:39 PM] Cerd: no the protag is a snake
+[11:39 PM] Blue-ninja: and because the snake has no arms, his inventory space is limited by his stomach :<
+[11:40 PM] Sukie: time to install a python env
+[11:40 PM] Cerd: also make one of the playable companions/party members a shibe if you're adding them
+
+[12:13 AM] Blue-ninja: "SnekRPG"
